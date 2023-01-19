@@ -11,6 +11,7 @@
 		CC3DFA642979C5EB00E7E769 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFA632979C5EB00E7E769 /* ContentView.swift */; };
 		CC3DFA662979C5EC00E7E769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC3DFA652979C5EC00E7E769 /* Assets.xcassets */; };
 		CC3DFA692979C5EC00E7E769 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC3DFA682979C5EC00E7E769 /* Preview Assets.xcassets */; };
+		CC3DFA712979C71200E7E769 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = CC3DFA702979C71200E7E769 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC3DFA712979C71200E7E769 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = "Swift Soup Example";
+			packageProductDependencies = (
+				CC3DFA702979C71200E7E769 /* SwiftSoup */,
+			);
 			productName = "Swift Soup Example";
 			productReference = CC3DFA5E2979C5EB00E7E769 /* Swift Soup Example.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = CC3DFA552979C5EB00E7E769;
+			packageReferences = (
+				CC3DFA6F2979C71200E7E769 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = CC3DFA5F2979C5EB00E7E769 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -339,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC3DFA6F2979C71200E7E769 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC3DFA702979C71200E7E769 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC3DFA6F2979C71200E7E769 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC3DFA562979C5EB00E7E769 /* Project object */;
 }

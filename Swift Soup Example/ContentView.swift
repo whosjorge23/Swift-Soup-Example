@@ -6,18 +6,49 @@
 //
 
 import SwiftUI
+import SwiftSoup
 
 struct ContentView: View {
+    @State private var searchTerm: String = ""
+    @State private var searchResult: String = ""
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            TextField("Enter a word to search on Wikipedia", text: $searchTerm).padding()
+            Button(action: {
+                self.scrapeData(from: self.searchTerm)
+            }) {
+                Text("Search")
+            }
+            if !searchResult.isEmpty {
+                Text(searchResult)
+            } else {
+                Text("Enter a word and tap the button to search on Wikipedia")
+            }
         }
-        .padding()
+    }
+    
+    func scrapeData(from searchTerm: String) {
+        let url = "https://en.wikipedia.org/wiki/\(searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+        let session = URLSession.shared
+        let task = session.dataTask(with: URL(string: url)!) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("Error: \(error!)")
+                return
+            }
+            let html = String(data: data, encoding: .utf8)
+            do {
+                let doc = try SwiftSoup.parse(html!)
+                let title = try doc.select("h3").first()?.text()
+                self.searchResult = title ?? "No result found"
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+        task.resume()
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
