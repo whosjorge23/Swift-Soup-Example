@@ -39,8 +39,8 @@ struct ContentView: View {
             let html = String(data: data, encoding: .utf8)
             do {
                 let doc = try SwiftSoup.parse(html!)
-                let title = try doc.select("h3").first()?.text()
-                self.searchResult = title ?? "No result found"
+                let firstParagraph = try doc.select("p:contains(\(searchTerm)").first()?.text()
+                self.searchResult = firstParagraph ?? "No result found"
             } catch {
                 print("Error: \(error)")
             }
